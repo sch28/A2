@@ -1,0 +1,50 @@
+
+<html>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'toDo/style.css' %}" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<body>
+    <div class="form-group">
+      <h1 align="center">To-Do <small><font color="blue">List</font></small></h1>
+    <!--<form role="form" >
+        <input type="text"  id= "add" class="form-control" placeholder="Your Task" name="task" >
+    </form>-->
+		<form role="form" method="post" >
+		{% csrf_token %}
+		{% for fields in form %}
+			
+			<div style="text-align: center;">
+			{{ fields }}id="add
+		{% endfor %}
+	<div style="text-align: center;">
+    <!--<button type="button" class="btn btn btn-primary">Add</button>-->
+	<input type="submit" class="btn btn btn-primary" id="btnAdd" value="Add" onclick="addItem()">
+	
+	</div>
+        </div>
+        <div></div>
+	<form method="post">
+    <ul class="task_font" id="todo"></ul>
+	</form>
+	
+<!--{% if Task.isComplete %}	
+<strike> {{Task.name}} </strike>
+{% endif %}-->
+	
+</body>
+<script type="text/javascript">
+    function addItem(){
+        var li = document.createElement("LI");  
+        var input = document.getElementById("add");
+        li.innerHTML = input.value;
+        input.value = "";
+
+        document.getElementById("todo").appendChild(li);
+    }
+</script>
+
+
+
+</html>

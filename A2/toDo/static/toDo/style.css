@@ -1,0 +1,8 @@
+body{
+	background: white url("images/background.jpg")
+}
+
+.task_font{
+	font: 400 20px/1.5 'Pacifico', Helvetica, sans-serif;
+	color: #2b2b2b;
+}

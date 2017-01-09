@@ -1,0 +1,50 @@
+<html>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'toDo/style.css' %}" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<head>
+<title>Easiest ToDO List Maker</title>
+</head>
+<body>
+    <div class="form-group">
+      <h1 align="center"><font color="white">To-Do </font><small><font color="blue">List</font></small></h1>
+	  
+<div style="text-align: center;">
+<br>
+	<form action = "{% url 'complete'%}" method = "post">
+	{% csrf_token %}
+	{% if task %}
+		<br>
+	  <div style="text-align: center;">
+	  <h4><i><b>Click on the checkbox of one task and then press complete to complete the task. You can check off one task at a time.</b></i><h4>
+		{% for task in task.all %}
+			<input type="radio" id = "task{{forloop.counter}}" name = "done" value = "{{task.id}}"/>
+			<label for = "task{{ forloop.counter }}">
+				{% if task.isComplete == False %}
+					<font color="white"> {{task.name}} </font>
+				{% endif %}
+				{% if task.isComplete %}
+					<strike><font color="white"> {{task.name}} </font></strike>
+				{% endif %}
+			</label><br>
+			
+		{% endfor %}
+		<input type="submit" value= "COMPLETE"/>
+	{% else %}
+	<div style="text-align: center;">
+		<h3>You don't have any task.</h3>
+	{% endif %}
+	
+</form>
+	<br>
+	
+	<br>
+	<div style="text-align: center;">
+	 <a href = "{% url 'index' %}"><input type="button" class="btn btn btn-primary" id="btnAdd" value="ADD NEW TASK"/></a> 
+	 
+	 <br>
+	<br>
+	<div style="text-align: center;">
+	 <a href = "{% url 'done' %}"><input type="button" class="btn btn btn-primary" id="btnAdd" value="DELETE ALL"/></a> 

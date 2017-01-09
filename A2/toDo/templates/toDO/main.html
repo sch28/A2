@@ -1,0 +1,52 @@
+<html>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'toDo/style.css' %}" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<head>
+<title>Easiest ToDO List Maker</title>
+</head>
+<body>
+    <div class="form-group">
+      <h1 align="center"><font color="white">To-Do </font><small><font color="blue">List</font></small></h1>
+	  <br>
+	  {% if form %}
+	  <div style="text-align: center;">
+	  <h4><i><b>Add new task below by filling in the form field and clicking the add button. Then click show tasks button to see the tasks that have been added.</b></i><h4>
+	  {% else %}
+	  <h4><h4>
+	  {% endif %}
+	  <br>
+    <form role="form" method="post" >
+		{% csrf_token %}
+		{% for fields in form %}
+			
+			<div style="text-align: center;">
+			{{fields}}
+			<div style="text-align: center;">
+			<br>
+			<br>
+			<input type="submit" class="btn btn btn-primary" id="btnAdd" value="ADD" />
+			</div>
+			
+		{% endfor %}
+		
+
+    </form>
+	<br>
+	<br>
+	<div style="text-align: center;">
+	 <a href = "{% url 'tasks' %}"><input type="button" class="btn btn btn-primary" id="btnAdd" value="SHOW TASKS"/></a> 
+	 
+	
+    </div>
+	
+
+	
+</body>
+
+	
+</script>
+
+</html>
